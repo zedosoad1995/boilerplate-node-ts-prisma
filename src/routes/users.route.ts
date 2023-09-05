@@ -20,12 +20,12 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", checkAuth, checkAdmin, getMany);
-router.get("/:userId", checkAuth, checkAdmin, getOne);
 router.get("/me", checkAuth, getMe);
+router.get("/:userId", checkAuth, checkAdmin, getOne);
 router.post("/", validateForm(createUserSchema), createOne);
-router.patch("/:userId", checkAuth, checkAdmin, validateForm(updateUserSchema), updateOne);
 router.patch("/me", checkAuth, validateForm(updateMeSchema), updateMe);
-router.delete("/:userId", checkAuth, checkAdmin, deleteOne);
+router.patch("/:userId", checkAuth, checkAdmin, validateForm(updateUserSchema), updateOne);
 router.delete("/me", checkAuth, checkRegular, deleteMe);
+router.delete("/:userId", checkAuth, checkAdmin, deleteOne);
 
 export default router;
