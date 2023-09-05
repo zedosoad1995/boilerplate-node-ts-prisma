@@ -17,4 +17,4 @@ To start the server, run (For windows):
 npm run dev
 ```
 
-Oh! And do not forget to change change this readme :(
+Oh! And do not forget to change change this readme 😞
