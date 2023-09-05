@@ -1,5 +1,5 @@
+import { ConflictError } from "@/errors/ConflictError";
 import { ForbiddenError } from "@/errors/ForbiddenError";
-import { isAdmin } from "@/helpers/role";
 import { UserModel } from "@/models/user";
 import { Request, Response } from "express";
 
@@ -24,6 +24,16 @@ export const getMe = async (req: Request, res: Response) => {
 };
 
 export const createOne = async (req: Request, res: Response) => {
+  const user = await UserModel.findUnique({
+    where: {
+      email: req.body.email,
+    },
+  });
+
+  if (user) {
+    throw new ConflictError("Email already exists");
+  }
+
   const newUser = await UserModel.add(req.body);
 
   return res.status(201).json(UserModel.dump(newUser));

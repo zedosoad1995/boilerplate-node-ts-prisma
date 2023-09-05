@@ -4,8 +4,6 @@ Run the following commands to setup the project:
 
 ```
 npm i
-npx tsc --init
-npx prisma init
 ```
 
 Create a .env file, following the structure of [.env.example](.env.example)

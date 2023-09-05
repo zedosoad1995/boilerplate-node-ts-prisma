@@ -12,7 +12,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
   }
 
   try {
-    const { id } = jwt.verify(token, process.env.JWT_KEY!) as JWTPayload;
+    const { id } = jwt.verify(token, process.env.JWT_SECRET!) as JWTPayload;
 
     const user = await UserModel.getByIdOrThrow(id);
     req.loggedUser = user;
